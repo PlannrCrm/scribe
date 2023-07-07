@@ -214,6 +214,13 @@ class ExtractedEndpointData extends BaseDTO
     {
         $argumentClassName = $argumentType->getName();
 
+        if (version_compare(PHP_VERSION, '8.1.0', '>=')) {
+            if(enum_exists($argumentClassName)) {
+                $enum = new ReflectionClass($argumentClassName);
+                return $enum;
+            }
+        }
+
         if (class_exists($argumentClassName)) {
             return new $argumentClassName;
         }
