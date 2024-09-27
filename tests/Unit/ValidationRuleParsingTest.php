@@ -162,7 +162,7 @@ class ValidationRuleParsingTest extends BaseLaravelTest
             ['email_param' => 'email|required'],
             [],
             [
-                'description' => 'Must be a valid email address.',
+                'description' => 'This field must be a valid email address.',
                 'type' => 'string',
             ],
         ];
@@ -178,7 +178,7 @@ class ValidationRuleParsingTest extends BaseLaravelTest
             ['ip_param' => 'ip|required'],
             ['ip_param' => ['description' => $description]],
             [
-                'description' => "$description. Must be a valid IP address.",
+                'description' => "$description. This field must be a valid IP address.",
                 'type' => 'string',
             ],
         ];
@@ -186,7 +186,7 @@ class ValidationRuleParsingTest extends BaseLaravelTest
             ['json_param' => 'json|required'],
             ['json_param' => []],
             [
-                'description' => 'Must be a valid JSON string.',
+                'description' => 'This field must be a valid JSON string.',
                 'type' => 'string',
             ],
         ];
@@ -194,7 +194,7 @@ class ValidationRuleParsingTest extends BaseLaravelTest
             ['date_param' => 'date|required'],
             [],
             [
-                'description' => 'Must be a valid date.',
+                'description' => 'This field must be a valid date.',
                 'type' => 'string',
             ],
         ];
@@ -225,7 +225,7 @@ class ValidationRuleParsingTest extends BaseLaravelTest
             ['digits_param' => 'digits:8'],
             [],
             [
-                'description' => "Must be 8 digits.",
+                'description' => "This field must be 8 digits.",
                 'type' => 'string',
             ],
         ];
@@ -233,7 +233,7 @@ class ValidationRuleParsingTest extends BaseLaravelTest
             ['digits_between_param' => 'digits_between:2,8'],
             [],
             [
-                'description' => "Must be between 2 and 8 digits.",
+                'description' => "This field must be between 2 and 8 digits.",
                 'type' => 'string',
             ],
         ];
@@ -281,7 +281,7 @@ class ValidationRuleParsingTest extends BaseLaravelTest
             ['uuid_param' => 'uuid'],
             [],
             [
-                'description' => "Must be a valid UUID.",
+                'description' => "This field must be a valid UUID.",
                 'type' => 'string',
             ],
         ];
@@ -318,54 +318,54 @@ class ValidationRuleParsingTest extends BaseLaravelTest
         yield 'same' => [
             ['same_param' => 'same:other_field'],
             [],
-            ['description' => "The value and <code>other_field</code> must match."],
+            ['description' => "This field must match <code>other_field</code>."],
         ];
         if (version_compare(Application::VERSION, '7.0.0', '>=')) {
             yield 'different' => [
                 ['different_param' => 'string|different:other_field'],
                 [],
-                ['description' => "The value and <code>other_field</code> must be different."],
+                ['description' => "This field and <code>other_field</code> must be different."],
             ];
         }
         yield 'after' => [
             ['after_param' => 'after:2020-02-12'],
             [],
-            ['description' => "Must be a date after <code>2020-02-12</code>."],
+            ['description' => "This field must be a date after <code>2020-02-12</code>."],
         ];
         yield 'before_or_equal' => [
             ['before_or_equal_param' => 'before_or_equal:2020-02-12'],
             [],
-            ['description' => "Must be a date before or equal to <code>2020-02-12</code>."],
+            ['description' => "This field must be a date before or equal to <code>2020-02-12</code>."],
         ];
         yield 'size (number)' => [
             ['size_param' => 'numeric|size:6'],
             [],
-            ['description' => "Must be 6."],
+            ['description' => "This field must be 6."],
         ];
         yield 'size (string)' => [
             ['size_param' => 'string|size:6'],
             [],
-            ['description' => "Must be 6 characters."],
+            ['description' => "This field must be 6 characters."],
         ];
         yield 'size (file)' => [
             ['size_param' => 'file|size:6'],
             [],
-            ['description' => "Must be a file. Must be 6 kilobytes."],
+            ['description' => "Must be a file. This field must be 6 kilobytes."],
         ];
         yield 'max (number)' => [
             ['max_param' => 'numeric|max:6'],
             [],
-            ['description' => "Must not be greater than 6."],
+            ['description' => "This field must not be greater than 6."],
         ];
         yield 'max (string)' => [
             ['max_param' => 'string|max:6'],
             [],
-            ['description' => "Must not be greater than 6 characters."],
+            ['description' => "This field must not be greater than 6 characters."],
         ];
         yield 'max (file)' => [
             ['max_param' => 'file|max:6'],
             [],
-            ['description' => "Must be a file. Must not be greater than 6 kilobytes."],
+            ['description' => "Must be a file. This field must not be greater than 6 kilobytes."],
         ];
         yield 'accepted' => [
             ['accepted_param' => 'accepted'],
